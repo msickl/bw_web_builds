@@ -1,4 +1,4 @@
-diff --git a/apps/web/package.json b/apps/web/package.json
+diff --git a/apps/web/package.json b/apps/web/package.json 
 index 82c447c9b4..4ae2970707 100644
 --- a/apps/web/package.json
 +++ b/apps/web/package.json
