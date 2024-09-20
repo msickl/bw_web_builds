@@ -453,7 +453,9 @@ index 72f0f1f1da..cea0867131 100644
    {{ "versionNumber" | i18n: version }}
 +  <br /><br />
 +  <div class="small">
-+     SICKL Technologies Password Manager<br />
++    SICKL Technologies
++    <br />
++    
 +  </div>
  </div>
 diff --git a/apps/web/src/app/layouts/header/web-header.component.html b/apps/web/src/app/layouts/header/web-header.component.html
