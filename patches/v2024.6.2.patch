@@ -35,7 +35,7 @@ index 4383656bee..eb2f6a154e 100644
    }
  
    canShowBillingTab(organization: Organization): boolean {
-+    return false; // disable billing tab in Vaultwarden
++    return false; // disable billing tab in SICKL Technologies Password Manager
      return canAccessBillingTab(organization);
    }
  
@@ -104,7 +104,7 @@ index 41cf9b9e8f..4d7f6426fd 100644
    };
  
    submitCollectionManagement = async () => {
-+    return; // flexible collections are not supported by Vaultwarden
++    return; // flexible collections are not supported by SICKL Technologies Password Manager
      // Early exit if self-hosted
      if (this.selfHosted) {
        return;
@@ -200,7 +200,7 @@ index 254f23eeb2..133eb4c059 100644
            case "showToast":
 +            if (typeof message.text === "string" && typeof crypto.subtle === "undefined") {
 +              message.title = "This browser requires HTTPS to use the web vault";
-+              message.text = "Check the Vaultwarden wiki for details on how to enable it";
++              message.text = "Check the SICKL Technologies wiki for details on how to enable it";
 +            }
              this.toastService._showToast(message);
              break;
@@ -213,7 +213,7 @@ index 4690a4e63a..9d297671d2 100644
  <div class="mt-5 d-flex justify-content-center" *ngIf="loading">
    <div>
 -    <img class="mb-4 logo logo-themed" alt="Bitwarden" />
-+    <img class="mb-4 logo logo-themed" alt="Vaultwarden" />
++    <img class="mb-4 logo logo-themed" alt="SICKL Technologies Password Manager" />
      <p class="text-center">
        <i
          class="bwi bwi-spinner bwi-spin bwi-2x text-muted"
@@ -226,7 +226,7 @@ index 0e29a34278..8beb6c7aab 100644
    >
      <div>
 -      <img class="logo logo-themed" alt="Bitwarden" />
-+      <img class="logo logo-themed" alt="Vaultwarden" />
++      <img class="logo logo-themed" alt="SICKL Technologies Password Manager" />
        <p class="tw-mx-4 tw-mb-4 tw-mt-3 tw-text-center tw-text-xl">
          {{ "loginOrCreateNewAccount" | i18n }}
        </p>
@@ -317,11 +317,11 @@ index 2228ad9f3a..21dc59117b 100644
        this.organization = await this.organizationService.get(this.organizationId);
 -      this.billing = await this.organizationApiService.getBilling(this.organizationId);
 -      this.sub = await this.organizationApiService.getSubscription(this.organizationId);
-+      this.billing = null; // no billing in Vaultwarden
-+      this.sub = null; // no subscriptions in Vaultwarden;
++      this.billing = null; // no billing in SICKL Technologies Password Manager
++      this.sub = null; // no subscriptions in SICKL Technologies Password Manager;
      }
  
-+    /* no need to ask /api/plans because Vaultwarden only supports the free plan
++    /* no need to ask /api/plans because SICKL Technologies Password Manager only supports the free plan
      if (!this.selfHosted) {
        const plans = await this.apiService.getPlans();
        this.passwordManagerPlans = plans.data.filter((plan) => !!plan.PasswordManager);
@@ -329,7 +329,7 @@ index 2228ad9f3a..21dc59117b 100644
        this.plan = providerDefaultPlan.type;
        this.product = providerDefaultPlan.product;
      }
-+    end of asking /api/plans in Vaultwarden */
++    end of asking /api/plans in SICKL Technologies Password Manager */
  
      if (!this.createOrganization) {
        this.upgradeFlowPrefillForm();
@@ -337,7 +337,7 @@ index 2228ad9f3a..21dc59117b 100644
    }
  
    get selectableProducts() {
-+    return null; // there are no products to select in Vaultwarden
++    return null; // there are no products to select in SICKL Technologies Password Manager
      if (this.acceptingSponsorship) {
        const familyPlan = this.passwordManagerPlans.find(
          (plan) => plan.type === PlanType.FamiliesAnnually,
@@ -345,7 +345,7 @@ index 2228ad9f3a..21dc59117b 100644
    }
  
    get selectablePlans() {
-+    return null; // no plans to select in Vaultwarden
++    return null; // no plans to select in SICKL Technologies Password Manager
      const selectedProductType = this.formGroup.controls.product.value;
      const result =
        this.passwordManagerPlans?.filter(
@@ -353,7 +353,7 @@ index 2228ad9f3a..21dc59117b 100644
    }
  
    get planOffersSecretsManager() {
-+    return false; // no support for secrets manager in Vaultwarden
++    return false; // no support for secrets manager in SICKL Technologies Password Manager
      return this.selectedSecretsManagerPlan != null;
    }
  
@@ -361,7 +361,7 @@ index 2228ad9f3a..21dc59117b 100644
    }
  
    changedProduct() {
-+    return; // no choice of products in Vaultwarden
++    return; // no choice of products in SICKL Technologies Password Manager
      const selectedPlan = this.selectablePlans[0];
  
      this.setPlanType(selectedPlan.type);
@@ -383,9 +383,9 @@ index 2228ad9f3a..21dc59117b 100644
      request.billingEmail = this.formGroup.controls.billingEmail.value;
      request.initiationPath = "New organization creation in-product";
      request.keys = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
-+    request.planType = PlanType.Free; // always select the free plan in Vaultwarden
++    request.planType = PlanType.Free; // always select the free plan in SICKL Technologies Password Manager
  
-+    /* there is no plan to select in Vaultwarden
++    /* there is no plan to select in SICKL Technologies Password Manager
      if (this.selectedPlan.type === PlanType.Free) {
        request.planType = PlanType.Free;
      } else {
@@ -393,7 +393,7 @@ index 2228ad9f3a..21dc59117b 100644
  
      // Secrets Manager
      this.buildSecretsManagerRequest(request);
-+    end plan selection and no support for secret manager in Vaultwarden */
++    end plan selection and no support for secret manager in SICKL Technologies Password Manager */
  
      if (this.hasProvider) {
        const providerRequest = new ProviderOrganizationCreateRequest(
@@ -401,7 +401,7 @@ index 2228ad9f3a..21dc59117b 100644
    }
  
    private upgradeFlowPrefillForm() {
-+    return; // Vaultwarden only supports free plan
++    return; // SICKL Technologies Password Manager only supports free plan
      if (this.acceptingSponsorship) {
        this.formGroup.controls.product.setValue(ProductType.Families);
        this.changedProduct();
@@ -414,7 +414,7 @@ index c0c1ec2640..fe4422a3b0 100644
          this.currentUrl = event.url;
  
 -        let title = i18nService.t("bitWebVault");
-+        let title = "Vaultwarden Web";
++        let title = "SICKL Technologies Password Manager Web";
  
          if (this.currentUrl.includes("/sm/")) {
            title = i18nService.t("bitSecretsManager");
@@ -426,17 +426,17 @@ index 02c7c29e34..9fd100024a 100644
    }
  
    isDev(): boolean {
-+    return false; // treat Vaultwarden as production ready
++    return false; // treat SICKL Technologies Password Manager as production ready
      return process.env.NODE_ENV === "development";
    }
  
    isSelfHost(): boolean {
-+    return true; // treat Vaultwarden as self hosted
++    return true; // treat SICKL Technologies Password Manager as self hosted
      return WebPlatformUtilsService.isSelfHost();
    }
  
    static isSelfHost(): boolean {
-+    return true; // treat Vaultwarden as self hosted
++    return true; // treat SICKL Technologies Password Manager as self hosted
      return process.env.ENV.toString() === "selfhosted";
    }
  
@@ -449,13 +449,11 @@ index 72f0f1f1da..cea0867131 100644
  <div class="container my-5 text-muted text-center">
 -  <environment-selector></environment-selector>
 -  &copy; {{ year }} Bitwarden Inc. <br />
-+  Vaultwarden Web<br />
++  SICKL Technologies Password Manager Web<br />
    {{ "versionNumber" | i18n: version }}
 +  <br /><br />
 +  <div class="small">
-+    A modified version of the Bitwarden&reg; Web Vault for Vaultwarden (an unofficial rewrite of the
-+    Bitwarden&reg; server).<br />
-+    Vaultwarden is not associated with the Bitwarden&reg; project nor Bitwarden Inc.
++     SICKL Technologies Password Manager<br />
 +  </div>
  </div>
 diff --git a/apps/web/src/app/layouts/header/web-header.component.html b/apps/web/src/app/layouts/header/web-header.component.html
@@ -469,7 +467,7 @@ index e2b3e7910a..fda32e9257 100644
 -              <a bitMenuItem href="https://bitwarden.com/help/" target="_blank" rel="noreferrer">
 +              <a
 +                bitMenuItem
-+                href="https://github.com/dani-garcia/vaultwarden"
++                href="https://www.sickl.at"
 +                target="_blank"
 +                rel="noreferrer"
 +              >
@@ -540,8 +538,8 @@ index 1ce8d4d227..ca8268adcc 100644
 -        return hasPremiumPersonally || !hasPremiumFromOrg || cloudAndBillingHistory;
 -      }),
 -    );
-+    this.hasFamilySponsorshipAvailable$ = of(false); // disable family Sponsorships in Vaultwarden
-+    this.showSubscription$ = of(false); // always hide subscriptions in Vaultwarden
++    this.hasFamilySponsorshipAvailable$ = of(false); // disable family Sponsorships in SICKL Technologies Password Manager
++    this.showSubscription$ = of(false); // always hide subscriptions in SICKL Technologies Password Manager
    }
  }
 diff --git a/apps/web/src/app/oss-routing.module.ts b/apps/web/src/app/oss-routing.module.ts
@@ -572,14 +570,14 @@ index c2eb37eea5..54fc97943c 100644
      // The web vault always uses the current location as the base url
 -    const urls = process.env.URLS as Urls;
 -    urls.base ??= this.win.location.origin;
-+    // If the base URL is `https://vaultwarden.example.com/base/path/`,
++    // If the base URL is `https://SICKL Technologies Password Manager.example.com/base/path/`,
 +    // `window.location.href` should have one of the following forms:
 +    //
-+    // - `https://vaultwarden.example.com/base/path/`
-+    // - `https://vaultwarden.example.com/base/path/#/some/route[?queryParam=...]`
-+    // - `https://vaultwarden.example.com/base/path/?queryParam=...`
++    // - `https://SICKL Technologies Password Manager.example.com/base/path/`
++    // - `https://SICKL Technologies Password Manager.example.com/base/path/#/some/route[?queryParam=...]`
++    // - `https://SICKL Technologies Password Manager.example.com/base/path/?queryParam=...`
 +    //
-+    // We want to get to just `https://vaultwarden.example.com/base/path`.
++    // We want to get to just `https://SICKL Technologies Password Manager.example.com/base/path`.
 +    let baseUrl = this.win.location.href;
 +    baseUrl = baseUrl.replace(/(\/+|\/*#.*|\/*\?.*)$/, ""); // Strip off trailing `/`, `#`, `?` and everything after.
 +    const urls = { base: baseUrl };
@@ -595,7 +593,7 @@ index 6fef7d361d..1deb1164ff 100644
      class="tw-mx-auto tw-mt-5 tw-flex tw-max-w-xl tw-flex-col tw-items-center tw-justify-center tw-p-8"
    >
 -    <img class="logo logo-themed" alt="Bitwarden" />
-+    <img class="logo logo-themed" alt="Vaultwarden" />
++    <img class="logo logo-themed" alt="SICKL Technologies Password Manager" />
      <div class="tw-mt-5 tw-w-full">
        <h2 bitTypography="h2" class="tw-mb-4 tw-text-center">View Send</h2>
      </div>
@@ -674,7 +672,7 @@ index c3a2c03ed9..1a326771a6 100644
      <meta name="theme-color" content="#175DDC" />
  
 -    <title page-title>Bitwarden Web Vault</title>
-+    <title page-title>Vaultwarden Web</title>
++    <title page-title>SICKL Technologies Password Manager Web</title>
  
      <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png" />
      <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png" />
@@ -683,7 +681,7 @@ index c3a2c03ed9..1a326771a6 100644
        <div class="mt-5 d-flex justify-content-center">
          <div>
 -          <img class="mb-4 logo logo-themed" alt="Bitwarden" />
-+          <img class="mb-4 logo logo-themed" alt="Vaultwarden" />
++          <img class="mb-4 logo logo-themed" alt="SICKL Technologies Password Manager" />
            <p class="text-center">
              <i
                class="bwi bwi-spinner bwi-spin bwi-2x text-muted"
@@ -694,7 +692,7 @@ index 92a1204c60..d9ff4771a3 100644
 @@ -1,5 +1,5 @@
  {
 -  "name": "Bitwarden Vault",
-+  "name": "Vaultwarden Web",
++  "name": "SICKL Technologies Password Manager Web",
    "icons": [
      {
        "src": "images/icons/android-chrome-192x192.png",
@@ -716,7 +714,7 @@ index 8fbea200a9..e3ff719ab2 100644
  @import "./tables";
  @import "./vault-filters";
 +
-+/**** START Vaultwarden CHANGES ****/
++/**** START SICKL Technologies Password Manager CHANGES ****/
 +/* This combines all selectors extending it into one */
 +%vw-hide {
 +  display: none !important;
@@ -781,7 +779,7 @@ index 8fbea200a9..e3ff719ab2 100644
 +  @extend %vw-hide;
 +}
 +
-+/* Replace the Bitwarden Shield at the top left with a Vaultwarden icon */
++/* Replace the Bitwarden Shield at the top left with a SICKL Technologies Password Manager icon */
 +.bwi-shield:before {
 +  content: "" !important;
 +  width: 32px !important;
@@ -791,7 +789,7 @@ index 8fbea200a9..e3ff719ab2 100644
 +  background-repeat: no-repeat;
 +  background-position-y: bottom;
 +}
-+/**** END Vaultwarden CHANGES ****/
++/**** END SICKL Technologies Password Manager CHANGES ****/
 diff --git a/apps/web/tailwind.config.js b/apps/web/tailwind.config.js
 index 08673c3f9a..db1dd55694 100644
 --- a/apps/web/tailwind.config.js
@@ -996,7 +994,7 @@ index e3197355dc..e3004ebdf7 100644
 +      this.platformUtilsService.showToast(
 +        "error",
 +        "This browser requires HTTPS to use the web vault",
-+        "Check the Vaultwarden wiki for details on how to enable it",
++        "Check the SICKL Technologies Password Manager wiki for details on how to enable it",
 +      );
 +      return;
 +    }
